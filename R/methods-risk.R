@@ -4,24 +4,22 @@
 #' Predict Risk
 #'
 #' Stratifies patients based on biomarker expression.
+#'
 #' @param object A GenePanel object.
-#' @param gene The gene symbol to use.
-#' @param direction 'low_risk_high_expr' or 'high_risk_high_expr'.
-#' @return A factor of risk labels.
+#' @param gene Character string. The gene symbol to use (must be in the matrix).
+#' @param direction String. Either 'low_risk_high_expr' (Tumor Suppressors) or 'high_risk_high_expr' (Oncogenes).
+#' @return A factor vector of risk labels ("High Risk", "Low Risk").
 #' @export
 #' @docType methods
 #' @rdname predict_risk-methods
+#' @name predict_risk
 # 1. Define the Generic
 setGeneric("predict_risk", function(object, gene, direction = "low_risk_high_expr")
   standardGeneric("predict_risk"))
 
 # 2. Implement the Method
-#' @param object A GenePanel S4 object
-#' @param gene Character string. The specific gene to test (e.g., "TP53").
-#' @param direction Strategy switch.
-#'        Use "low_risk_high_expr" for Tumor Suppressors (High expr is good).
-#'        Use "high_risk_high_expr" for Oncogenes (High expr is bad).
-#' @return A factor vector of risk labels.
+#' @rdname predict_risk-methods
+#' @aliases predict_risk,GenePanel-method
 setMethod("predict_risk", "GenePanel", function(object, gene, direction) {
 
   # A. Validation

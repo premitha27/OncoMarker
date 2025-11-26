@@ -3,19 +3,22 @@
 \docType{methods}
 \name{predict_risk}
 \alias{predict_risk}
+\alias{predict_risk,GenePanel-method}
 \title{Predict Risk}
 \usage{
 predict_risk(object, gene, direction = "low_risk_high_expr")
+
+\S4method{predict_risk}{GenePanel}(object, gene, direction = "low_risk_high_expr")
 }
 \arguments{
 \item{object}{A GenePanel object.}
 
-\item{gene}{The gene symbol to use.}
+\item{gene}{Character string. The gene symbol to use (must be in the matrix).}
 
-\item{direction}{'low_risk_high_expr' or 'high_risk_high_expr'.}
+\item{direction}{String. Either 'low_risk_high_expr' (Tumor Suppressors) or 'high_risk_high_expr' (Oncogenes).}
 }
 \value{
-A factor of risk labels.
+A factor vector of risk labels ("High Risk", "Low Risk").
 }
 \description{
 Stratifies patients based on biomarker expression.
