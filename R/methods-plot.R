@@ -1,6 +1,12 @@
 # ==============================================================================
 # STEP 5: VISUALIZATION (The "Volcano Plot")
 # ==============================================================================
+library(ggplot2)
+
+# 1. Define the Generic
+setGeneric("plot_volcano", function(object) standardGeneric("plot_volcano"))
+
+# 2. Implement the Method
 #' Volcano Plot
 #'
 #' Generates a volcano plot for differential expression results.
@@ -9,14 +15,6 @@
 #' @export
 #' @docType methods
 #' @rdname plot_volcano-methods
-library(ggplot2)
-
-# 1. Define the Generic
-setGeneric("plot_volcano", function(object) standardGeneric("plot_volcano"))
-
-# 2. Implement the Method
-#' @param object A GenePanel S4 object
-#' @return A ggplot object
 setMethod("plot_volcano", "GenePanel", function(object) {
 
   # A. Get the Stats

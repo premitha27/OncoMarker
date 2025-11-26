@@ -1,6 +1,13 @@
 # ==============================================================================
 # STEP 4: DIFFERENTIAL EXPRESSION ANALYSIS
 # ==============================================================================
+
+# 1. Define the Generic Method
+# This tells R that "calc_fold_change" is a function that can behave differently
+# depending on the object it is given.
+setGeneric("calc_fold_change", function(object) standardGeneric("calc_fold_change"))
+
+# 2. Implement the Method for GenePanel
 #' Calculate Fold Change
 #'
 #' Performs differential expression analysis using Welch's t-test.
@@ -9,14 +16,6 @@
 #' @export
 #' @docType methods
 #' @rdname calc_fold_change-methods
-# 1. Define the Generic Method
-# This tells R that "calc_fold_change" is a function that can behave differently
-# depending on the object it is given.
-setGeneric("calc_fold_change", function(object) standardGeneric("calc_fold_change"))
-
-# 2. Implement the Method for GenePanel
-#' @param object A GenePanel S4 object
-#' @return A dataframe with Gene, Log2FC, PValue, and FDR
 setMethod("calc_fold_change", "GenePanel", function(object) {
 
   # A. Extract Data using our Accessors
