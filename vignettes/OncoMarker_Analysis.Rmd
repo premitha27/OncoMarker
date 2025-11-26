@@ -1,0 +1,106 @@
+---
+title: "OncoMarker: Targeted Genomic Analysis Workflow"
+author: "Premitha Pagadala"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{OncoMarker Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(OncoMarker)
+library(ggplot2)
+```
+
+1. Introduction
+The OncoMarker package provides a streamlined S4 object-oriented framework for analyzing targeted genomic panels. It is designed to bridge the gap between massive public datasets (like TCGA) and clinical biomarker discovery.
+
+This vignette demonstrates the end-to-end workflow:
+
+Ingesting raw text data (Level 3 expression).
+
+Constructing the strictly typed GenePanel S4 object.
+
+Performing differential expression analysis.
+
+Visualizing results via Volcano plots.
+
+Stratifying patients based on risk biomarkers.
+
+2. Data Ingestion & Object Construction
+The OncoMarker framework relies on the GenePanel class to ensure data integrity. The code below demonstrates how to load raw text files and create the object.
+
+Note: The code below assumes you have the specific TCGA text files locally.
+```{r}
+# 1. Define Paths to your raw data
+normal_path <- "../raw_data/BC-TCGA-Normal.txt"
+tumor_path  <- "../raw_data/BC-TCGA-Tumor.txt"
+
+# 2. Load Data 
+# We use read.delim to strictly handle tab-separation and avoid parsing errors
+normal_df <- read.delim(normal_path, header=TRUE, row.names=1, check.names=FALSE)
+tumor_df  <- read.delim(tumor_path, header=TRUE, row.names=1, check.names=FALSE)
+
+# 3. ETL: Merge and Format
+# Bind columns: Normal samples first, then Tumor samples
+expr_mat <- as.matrix(cbind(normal_df, tumor_df))
+
+# CRITICAL STEP: Ensure matrix is numeric (converts text to numbers)
+storage.mode(expr_mat) <- "numeric"
+
+# 4. Create Clinical Metadata
+# We automatically generate labels based on the column counts
+meta_df <- data.frame(
+  SampleID = colnames(expr_mat),
+  Diagnosis = factor(c(rep("Normal", ncol(normal_df)), rep("Tumor", ncol(tumor_df)))),
+  row.names = colnames(expr_mat)
+)
+
+# 5. Create the S4 Object
+# This step runs internal validation to ensure dimensions match
+panel <- new("GenePanel", 
+             expression_data = expr_mat, 
+             patient_metadata = meta_df, 
+             cancer_type = "TCGA-BRCA")
+
+show(panel)
+```
+
+3. Differential Expression Analysis
+Once the GenePanel object is created, we can identify significant drivers using the calc_fold_change method. This utilizes Welch's t-test to handle unequal variances between tumor and normal tissues.
+
+```{r}
+# Calculate Log2 Fold Change and P-values
+results <- calc_fold_change(panel)
+
+# Display the top significant genes
+head(results)
+```
+
+4. Visualization: The Volcano Plot
+Visualizing genomic alterations is crucial for interpretation. The plot_volcano method automatically highlights significant upregulation (Red) and downregulation (Blue).
+```{r}
+# Generate plot
+p <- plot_volcano(panel)
+
+# Display
+print(p)
+```
+
+5. Clinical Risk Stratification
+Finally, we can move from descriptive analysis to prognostic modeling. The predict_risk function stratifies the cohort into "High Risk" and "Low Risk" groups based on the median expression of a specific biomarker.
+
+Example: Stratifying by TP53 (Tumor Suppressor) Logic: Low expression indicates loss of function -> High Risk.
+```{r}
+# Predict risk based on TP53 levels
+risk_scores <- predict_risk(panel, gene = "TP53", direction = "low_risk_high_expr")
+
+# View the distribution of patients
+table(risk_scores)
+```

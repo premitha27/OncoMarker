@@ -1,0 +1,17 @@
+# --- Export Classes ---
+exportClasses(GenePanel)
+
+# --- Export Generics and Methods ---
+exportMethods(exprs)
+exportMethods(meta)
+exportMethods(cohort)
+exportMethods(calc_fold_change)
+exportMethods(plot_volcano)
+exportMethods(predict_risk)
+
+# --- Export Helper Functions ---
+export(standardize_metadata)
+
+# --- Import Dependencies ---
+import(methods)
+import(ggplot2)

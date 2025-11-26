@@ -1,0 +1,25 @@
+Package: OncoMarker
+Type: Package
+Title: Targeted Genomic Biomarker Discovery Framework
+Version: 0.1.0
+Author: Premitha Pagadala
+Maintainer: Premitha Pagadala <premitha@usf.edu>
+Description: A bioinformatics software package implementing an S4 object-oriented 
+    architecture for targeted gene panel analysis. It ensures strict data integrity 
+    between expression matrices and clinical metadata. The package includes 
+    algorithms for differential expression (Welch's t-test), statistical 
+    visualization (Volcano plots), and prognostic modeling based on median 
+    gene expression thresholds.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    methods,
+    ggplot2,
+    stats,
+    utils
+RoxygenNote: 7.2.3
+ Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
