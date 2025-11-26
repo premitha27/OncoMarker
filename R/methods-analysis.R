@@ -1,7 +1,14 @@
 # ==============================================================================
 # STEP 4: DIFFERENTIAL EXPRESSION ANALYSIS
 # ==============================================================================
-
+#' Calculate Fold Change
+#'
+#' Performs differential expression analysis using Welch's t-test.
+#' @param object A GenePanel object.
+#' @return A dataframe of results with Log2FC and P-values.
+#' @export
+#' @docType methods
+#' @rdname calc_fold_change-methods
 # 1. Define the Generic Method
 # This tells R that "calc_fold_change" is a function that can behave differently
 # depending on the object it is given.

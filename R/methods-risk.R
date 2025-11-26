@@ -1,7 +1,16 @@
 # ==============================================================================
 # STEP 6: RISK PREDICTION (The "Prognostic Model")
 # ==============================================================================
-
+#' Predict Risk
+#'
+#' Stratifies patients based on biomarker expression.
+#' @param object A GenePanel object.
+#' @param gene The gene symbol to use.
+#' @param direction 'low_risk_high_expr' or 'high_risk_high_expr'.
+#' @return A factor of risk labels.
+#' @export
+#' @docType methods
+#' @rdname predict_risk-methods
 # 1. Define the Generic
 setGeneric("predict_risk", function(object, gene, direction = "low_risk_high_expr")
   standardGeneric("predict_risk"))

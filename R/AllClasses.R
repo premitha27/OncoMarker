@@ -1,7 +1,14 @@
 # ==============================================================================
 # STEP 3: S4 CLASS DEFINITION
 # ==============================================================================
-
+#' @title GenePanel Class
+#' @description An S4 class to represent a targeted gene expression panel and clinical data.
+#' @slot expression_data A numeric matrix (Genes x Patients).
+#' @slot patient_metadata A data.frame of clinical info.
+#' @slot cancer_type A character string describing the cohort.
+#' @name GenePanel-class
+#' @rdname GenePanel-class
+#' @exportClass GenePanel
 # 1. Define the Generic Accessors (Section 3.3)
 # We define these empty functions first so R knows they exist.
 setGeneric("exprs", function(object) standardGeneric("exprs"))

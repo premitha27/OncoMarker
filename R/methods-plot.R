@@ -1,7 +1,14 @@
 # ==============================================================================
 # STEP 5: VISUALIZATION (The "Volcano Plot")
 # ==============================================================================
-
+#' Volcano Plot
+#'
+#' Generates a volcano plot for differential expression results.
+#' @param object A GenePanel object.
+#' @return A ggplot object.
+#' @export
+#' @docType methods
+#' @rdname plot_volcano-methods
 library(ggplot2)
 
 # 1. Define the Generic
