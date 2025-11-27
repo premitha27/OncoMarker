@@ -1,16 +1,15 @@
 Package: OncoMarker
 Type: Package
 Title: OncoMarker: Targeted Genomic Analysis Workflow
-Version: 1.0.0
+Version: 0.0.0.9000
 Authors@R: 
     c(person("Premitha", "Pagadala", 
              email = "premitha@usf.edu",
              role = c("aut", "cre")))
 Description: An S4-based bioinformatics framework for targeted biomarker discovery, differential expression analysis, and clinical risk stratification using TCGA breast cancer datasets.
-License: MIT + file LICENSE
+License: MIT
 Encoding: UTF-8
 Imports:
-    methods,
     ggplot2,
     stats,
     utils
@@ -23,3 +22,4 @@ VignetteBuilder: knitr
 URL: https://github.com/premitha27/OncoMarker
 BugReports: https://github.com/premitha27/OncoMarker/issues
 RoxygenNote: 7.3.3
+LazyData: true
