@@ -1,11 +1,11 @@
 # OncoMarker
-**Targeted Genomic Biomarker Discovery Framework**
-**Author:** Premitha Pagadala
-**Email:** premitha@usf.edu
+**Targeted Genomic Biomarker Discovery Framework**<br>
+**Author:** Premitha Pagadala<br>
+**Email:** premitha@usf.edu<br>
 **Blog Link:** [Final Project Package Blog Post](https://premithapagadala.blogspot.com/2025/11/assignment-11.html)
 
 ## Overview
-OncoMarker is an R package designed for targeted biomarker discovery, differential expression analysis, volcano-plot visualization, and simple risk stratification across cancer cohorts.
+OncoMarker is an R package designed for targeted biomarker discovery, differential expression analysis, volcano-plot visualization, and simple risk stratification across cancer cohorts.<br>
 Unlike traditional RNA-seq pipelines requiring FASTQ → alignment → quantification, OncoMarker operates directly on pre-processed Level-3 expression matrices (CSV / RData).
 This dramatically reduces compute requirements and makes biomarker discovery accessible to researchers using standard laptops.
 
@@ -26,9 +26,9 @@ library(OncoMarker)
 ```
 
 ## Before Using the Package – Important Setup
-Set your working directory to the data folder. You can do this by going into the top toolbar in R:
-**Session --> Set Working Directory --> Choose Directory**
-Choose the data directory which you downloaded from this repository.
+Set your working directory to the data folder. You can do this by going into the top toolbar in R:<br>
+**Session --> Set Working Directory --> Choose Directory**<br>
+Choose the data directory which you downloaded from this repository.<br>
 Make sure all the data sets or files you want to analyze are in .txt format
 
 ## The GenePanel Object
