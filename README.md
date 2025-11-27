@@ -2,7 +2,7 @@
 **Targeted Genomic Biomarker Discovery Framework**<br>
 **Author:** Premitha Pagadala<br>
 **Email:** premitha@usf.edu<br>
-**Blog Link:** [Final Project Package Blog Post](https://premithapagadala.blogspot.com/2025/11/assignment-11.html)
+**Blog Link:** [Final Project Package Blog Post](https://premithapagadala.blogspot.com/2025/11/final-project-package.html)
 
 ## Overview
 OncoMarker is an R package designed for targeted biomarker discovery, differential expression analysis, volcano-plot visualization, and simple risk stratification across cancer cohorts.<br>
