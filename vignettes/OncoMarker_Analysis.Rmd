@@ -2,7 +2,12 @@
 title: "OncoMarker: Targeted Genomic Analysis Workflow"
 author: "Premitha Pagadala"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  html_vignette:
+    theme: flatly
+    toc: true
+    toc_float: true
+    css: style.css
 vignette: >
   %\VignetteIndexEntry{OncoMarker Analysis}
   %\VignetteEngine{knitr::rmarkdown}
@@ -12,26 +17,26 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 8,
+  fig.height = 6,
+  message = FALSE,
+  warning = FALSE
 )
 library(OncoMarker)
 library(ggplot2)
+library(dplyr)
 ```
 
 1. Introduction
 The OncoMarker package provides a streamlined S4 object-oriented framework for analyzing targeted genomic panels. It is designed to bridge the gap between massive public datasets (like TCGA) and clinical biomarker discovery.
 
 This vignette demonstrates the end-to-end workflow:
-
-Ingesting raw text data (Level 3 expression).
-
-Constructing the strictly typed GenePanel S4 object.
-
-Performing differential expression analysis.
-
-Visualizing results via Volcano plots.
-
-Stratifying patients based on risk biomarkers.
+1. Ingesting raw text data (Level 3 expression).
+2. Constructing the strictly typed GenePanel S4 object.
+3. Performing differential expression analysis.
+4. Visualizing results via Volcano plots.
+5. Stratifying patients based on risk biomarkers.
 
 2. Data Ingestion & Object Construction
 The OncoMarker framework relies on the GenePanel class to ensure data integrity. The code below demonstrates how to load raw text files and create the object.
@@ -92,6 +97,10 @@ p <- plot_volcano(panel)
 # Display
 print(p)
 ```
+Volcano plot highlights:
+Red points: Significantly upregulated in tumors
+Blue points: Significantly downregulated
+Grey points: Not significant
 
 5. Clinical Risk Stratification
 Finally, we can move from descriptive analysis to prognostic modeling. The predict_risk function stratifies the cohort into "High Risk" and "Low Risk" groups based on the median expression of a specific biomarker.
