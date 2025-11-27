@@ -74,5 +74,5 @@ gp@patient_metadata$Risk <- risk
 Labels each patient as “Low Risk” or “High Risk” based on median expression.
 
 ## Data Source
-Kaggle Dataset: Gene Expression Profiles of Breast Cancer
+**Kaggle Dataset:** Gene Expression Profiles of Breast Cancer
 https://www.kaggle.com/datasets/orvile/gene-expression-profiles-of-breast-cancer
