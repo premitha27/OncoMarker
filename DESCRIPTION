@@ -20,3 +20,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://github.com/premitha27/OncoMarker
+BugReports: https://github.com/premitha27/OncoMarker/issues
