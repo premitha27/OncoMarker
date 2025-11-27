@@ -2,8 +2,11 @@ Package: OncoMarker
 Type: Package
 Title: OncoMarker: Targeted Genomic Analysis Workflow
 Version: 1.0.0
-Author: Premitha Pagadala
-Maintainer: Premitha Pagadala <premitha.pagadala@example.com>
+Authors@R: 
+    c(person("Premitha", "Pagadala", 
+             email = "premitha@usf.edu",
+             role = c("aut", "cre")))
+Maintainer: Premitha Pagadala <premitha@usf.edu>
 Description: An S4-based bioinformatics framework for targeted biomarker discovery, differential expression analysis, and clinical risk stratification using TCGA breast cancer datasets.
 License: MIT
 Encoding: UTF-8
