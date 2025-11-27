@@ -7,6 +7,10 @@ output:
     toc: true
     toc_float: true
     css: style.css
+    df_print: paged
+    keep_md: true
+    self_contained: true
+    output_file: "OncoMarker_Analysis.html"
 vignette: >
   %\VignetteIndexEntry{OncoMarker Analysis}
   %\VignetteEngine{knitr::rmarkdown}
@@ -30,11 +34,11 @@ library(dplyr)
 # 1. Introduction
 The OncoMarker package provides a streamlined S4 object-oriented framework for analyzing targeted genomic panels. It is designed to bridge the gap between massive public datasets (like TCGA) and clinical biomarker discovery.
 
-This vignette demonstrates the end-to-end workflow:
-1. Ingesting raw text data (Level 3 expression).
-2. Constructing the strictly typed GenePanel S4 object.
-3. Performing differential expression analysis.
-4. Visualizing results via Volcano plots.
+This vignette demonstrates the end-to-end workflow:<br>
+1. Ingesting raw text data (Level 3 expression).<br>
+2. Constructing the strictly typed GenePanel S4 object.<br>
+3. Performing differential expression analysis.<br>
+4. Visualizing results via Volcano plots.<br>
 5. Stratifying patients based on risk biomarkers.
 
 # 2. Data Ingestion & Object Construction
@@ -127,7 +131,7 @@ Using the `predict_risk()` function, patients were categorized into High Risk an
 # Summarize risk distribution
 table(panel@patient_metadata$Risk)
 ```
-# 8. References & Further Reading
+# 7. References & Further Reading
 
 ## Data Sources
 1. Breast Cancer Gene Expression Profiles (TCGA) – Kaggle  

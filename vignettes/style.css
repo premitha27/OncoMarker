@@ -4,9 +4,9 @@
 
 /* ---- Body Text ---- */
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
+  font-family: "Georgia", "Times New Roman", Times, serif; /* Modern serif for readability */
+  font-size: 17px; /* Slightly larger for easier reading */
+  line-height: 1.8; /* More spacing between lines */
   color: #333333;
   background-color: #ffffff;
   margin: 20px;
@@ -26,12 +26,14 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 32px;
   border-bottom: 2px solid #1F497D;
+  color: #000000;
   padding-bottom: 6px;
 }
 
 /* Sub-headings h2 */
 h2 {
   font-size: 26px;
+  color: #000000;
   border-bottom: 1px solid #CCCCCC;
   padding-bottom: 4px;
 }
@@ -39,26 +41,31 @@ h2 {
 /* Section headings h3 */
 h3 {
   font-size: 22px;
+  color: #000000;
   margin-top: 20px;
 }
 
 /* Smaller headings h4-h6 */
 h4 {
   font-size: 18px;
+  color: #1F497D;
 }
 h5 {
   font-size: 16px;
+  color: #000000;
 }
 h6 {
   font-size: 14px;
+  color: #000000;
 }
 
 /* ---- Paragraphs ---- */
 p {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: "Georgia", "Times New Roman", Times, serif;
+  font-size: 17px;
+  line-height: 1.8;
   color: #333333;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 /* ---- Inline Code ---- */
