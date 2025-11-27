@@ -3,7 +3,7 @@ title: "OncoMarker: Targeted Genomic Analysis Workflow"
 author: "Premitha Pagadala"
 date: "`r Sys.Date()`"
 output: 
-rmarkdown::html_vignette:
+  html_document:
     toc: true
     toc_float: true
     css: style.css
@@ -27,7 +27,7 @@ library(ggplot2)
 library(dplyr)
 ```
 
-1. Introduction
+# 1. Introduction
 The OncoMarker package provides a streamlined S4 object-oriented framework for analyzing targeted genomic panels. It is designed to bridge the gap between massive public datasets (like TCGA) and clinical biomarker discovery.
 
 This vignette demonstrates the end-to-end workflow:
@@ -37,7 +37,7 @@ This vignette demonstrates the end-to-end workflow:
 4. Visualizing results via Volcano plots.
 5. Stratifying patients based on risk biomarkers.
 
-2. Data Ingestion & Object Construction
+# 2. Data Ingestion & Object Construction
 The OncoMarker framework relies on the GenePanel class to ensure data integrity. The code below demonstrates how to load raw text files and create the object.
 
 Note: The code below assumes you have the specific TCGA text files locally.
@@ -76,7 +76,7 @@ panel <- new("GenePanel",
 show(panel)
 ```
 
-3. Differential Expression Analysis
+# 3. Differential Expression Analysis
 Once the GenePanel object is created, we can identify significant drivers using the calc_fold_change method. This utilizes Welch's t-test to handle unequal variances between tumor and normal tissues.
 
 ```{r}
@@ -87,7 +87,7 @@ results <- calc_fold_change(panel)
 head(results)
 ```
 
-4. Visualization: The Volcano Plot
+# 4. Visualization: The Volcano Plot
 Visualizing genomic alterations is crucial for interpretation. The plot_volcano method automatically highlights significant upregulation (Red) and downregulation (Blue).
 ```{r}
 # Generate plot
@@ -101,7 +101,7 @@ Red points: Significantly upregulated in tumors
 Blue points: Significantly downregulated
 Grey points: Not significant
 
-5. Clinical Risk Stratification
+# 5. Clinical Risk Stratification
 Finally, we can move from descriptive analysis to prognostic modeling. The predict_risk function stratifies the cohort into "High Risk" and "Low Risk" groups based on the median expression of a specific biomarker.
 
 Example: Stratifying by TP53 (Tumor Suppressor) Logic: Low expression indicates loss of function -> High Risk.
@@ -112,3 +112,45 @@ risk_scores <- predict_risk(panel, gene = "TP53", direction = "low_risk_high_exp
 # View the distribution of patients
 table(risk_scores)
 ```
+# 6. Summary & Key Findings
+## Summary of Differential Expression Analysis
+The OncoMarker pipeline successfully identifies significant genomic alterations across the targeted 50-gene panel. For instance, TP53, MKI67, and ERBB2 consistently appear as top candidates with significant fold changes between Tumor and Normal samples.  
+
+Key observations:
+- Genes with Log2FC > 1 and adjusted p-value < 0.05 are considered upregulated in tumors.  
+- Genes with Log2FC < -1 and adjusted p-value < 0.05 are considered downregulated in tumors.  
+
+## Risk Stratification Insights
+Using the `predict_risk()` function, patients were categorized into High Risk and Low Risk groups. This allows immediate translation to survival analyses or clinical decision support workflows.
+
+```{r}
+# Summarize risk distribution
+table(panel@patient_metadata$Risk)
+```
+# 8. References & Further Reading
+
+## Data Sources
+1. Breast Cancer Gene Expression Profiles (TCGA) – Kaggle  
+   [https://www.kaggle.com/datasets/orvile/gene-expression-profiles-of-breast-cancer](https://www.kaggle.com/datasets/orvile/gene-expression-profiles-of-breast-cancer?resource=download)  
+
+## R Programming & Tutorials
+2. R Programming & Tutorials – R-Coder  
+   [https://r-coder.com/](https://r-coder.com/)  
+
+3. Applied Modeling & Text Analysis – Julia Silge Blog  
+   [https://juliasilge.com/blog/](https://juliasilge.com/blog/)  
+
+4. Visualization with ggplot2 – R Graph Gallery  
+   [https://r-graph-gallery.com/ggplot2-package.html](https://r-graph-gallery.com/ggplot2-package.html)  
+
+5. Comprehensive R Learning Libraries – Awesome R Resources  
+   [https://github.com/iamericfletcher/awesome-r-learning-resources?tab=readme-ov-file](https://github.com/iamericfletcher/awesome-r-learning-resources?tab=readme-ov-file)  
+
+## Suggested Reading for Clinical Genomics
+6. The Cancer Genome Atlas (TCGA) – National Cancer Institute  
+   [https://www.cancer.gov/tcga](https://www.cancer.gov/tcga)  
+
+7. cBioPortal for Cancer Genomics  
+   [https://www.cbioportal.org](https://www.cbioportal.org)  
+
+8. Bioinformatics Workflows and Differential Expression Analysis (Friedman et al., 2023)
