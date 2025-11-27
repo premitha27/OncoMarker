@@ -3,8 +3,7 @@ title: "OncoMarker: Targeted Genomic Analysis Workflow"
 author: "Premitha Pagadala"
 date: "`r Sys.Date()`"
 output: 
-  html_vignette:
-    theme: flatly
+rmarkdown::html_vignette:
     toc: true
     toc_float: true
     css: style.css
